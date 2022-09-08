@@ -79,9 +79,9 @@ module Dependabot
 
             def pull_request_approve(pull_request_id, reviewer_email, reviewer_token)
                 # https://docs.microsoft.com/en-us/rest/api/azure/devops/memberentitlementmanagement/user%20entitlements/search%20user%20entitlements?view=azure-devops-rest-6.0
-                response = get(source.api_endpoint + source.organization + "/_apis/userentitlements?$filter=name eq '#{reviewer_email}'&api-version=6.0-preview.3")
+                #response = get(source.api_endpoint + source.organization + "/_apis/userentitlements?$filter=name eq '#{reviewer_email}'&api-version=6.0-preview.3")
 
-                user_id = JSON.parse(response.body).fetch("members")[0]['id']
+                #user_id = JSON.parse(response.body).fetch("members")[0]['id']
 
                 # https://docs.microsoft.com/en-us/rest/api/azure/devops/git/pull%20request%20reviewers/create%20pull%20request%20reviewer?view=azure-devops-rest-6.0
                 content = {
@@ -92,7 +92,7 @@ module Dependabot
                 response = put_with_token(source.api_endpoint +
                     source.organization + "/" + source.project +
                     "/_apis/git/repositories/" + source.unscoped_repo +
-                    "/pullrequests/#{pull_request_id}/reviewers/#{user_id}?api-version=6.0", content.to_json, reviewer_token)
+                    "/pullrequests/#{pull_request_id}/reviewers/#{reviewer_email}?api-version=6.0", content.to_json, reviewer_token)
             end
 
             def put_with_token(url, json, token)

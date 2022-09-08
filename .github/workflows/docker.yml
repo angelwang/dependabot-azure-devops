@@ -42,7 +42,7 @@ jobs:
         useConfigFile: true
 
     - name: Pull Docker base image & warm Docker cache
-      run: docker pull "tingle/$IMAGE_NAME:latest"
+      run: docker pull "angelwang1234567/$IMAGE_NAME:latest"
 
     - name: Build image
       run: |

@@ -92,7 +92,7 @@ module Dependabot
                 response = put_with_token(source.api_endpoint +
                     source.organization + "/" + source.project +
                     "/_apis/git/repositories/" + source.unscoped_repo +
-                    "/pullrequests/#{pull_request_id}/reviewers/#{reviewer_email}?api-version=6.0", content.to_json, reviewer_token)
+                    "/pullrequests/#{pull_request_id}/reviewers/#{reviewer_email}?api-version=5.0", content.to_json, reviewer_token)
             end
 
             def put_with_token(url, json, token)
